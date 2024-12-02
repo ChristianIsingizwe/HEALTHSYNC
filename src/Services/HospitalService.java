@@ -95,7 +95,7 @@ public class HospitalService {
         patients.add(patient);
 
         try {
-            patientDAO.savePatient(patient); // Using the PatientDAO interface
+            patientDAO.savePatient(patient);
             System.out.println("Patient added successfully!");
         } catch (Exception e) {
             Logger.logError(e.getMessage());
@@ -112,7 +112,7 @@ public class HospitalService {
         doctors.add(doctor);
 
         try {
-            doctorDAO.saveDoctor(doctor); // Using the DoctorDAO interface
+            doctorDAO.saveDoctor(doctor);
             System.out.println("Doctor added successfully!");
         } catch (Exception e) {
             Logger.logError(e.getMessage());
@@ -131,7 +131,7 @@ public class HospitalService {
         appointments.add(appointment);
 
         try {
-            appointmentDAO.saveAppointment(appointment); // Using the AppointmentDAO interface
+            appointmentDAO.saveAppointment(appointment);
             System.out.println("Appointment scheduled successfully!");
         } catch (Exception e) {
             Logger.logError(e.getMessage());

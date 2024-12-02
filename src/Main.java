@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         try {
-            PatientDAO patientDAO = new DatabaseManager();
-            DoctorDAO doctorDAO = (DatabaseManager) patientDAO;
-            AppointmentDAO appointmentDAO = (DatabaseManager) patientDAO;
+            DatabaseManager patientDAO = new DatabaseManager();
+            DoctorDAO doctorDAO = patientDAO;
+            AppointmentDAO appointmentDAO = patientDAO;
 
 
             HospitalService hospitalService = new HospitalService(patientDAO, doctorDAO, appointmentDAO);
