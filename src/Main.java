@@ -1,5 +1,4 @@
 import Database.DatabaseManager;
-import Interfaces.PatientDAO;
 import Interfaces.DoctorDAO;
 import Interfaces.AppointmentDAO;
 import Services.HospitalService;
@@ -13,7 +12,6 @@ public class Main {
             DatabaseManager patientDAO = new DatabaseManager();
             DoctorDAO doctorDAO = patientDAO;
             AppointmentDAO appointmentDAO = patientDAO;
-
 
             HospitalService hospitalService = new HospitalService(patientDAO, doctorDAO, appointmentDAO);
 
