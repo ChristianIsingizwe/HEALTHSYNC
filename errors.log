@@ -1,0 +1,2 @@
+Mon Dec 02 08:09:06 SAST 2024: Failed to initialize Database.DatabaseManager: Access denied for user 'root'@'localhost' (using password: YES)
+Mon Dec 02 08:10:38 SAST 2024: Failed to initialize Database.DatabaseManager: Access denied for user 'root'@'localhost' (using password: YES)
