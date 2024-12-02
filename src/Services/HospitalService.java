@@ -1,6 +1,8 @@
 package Services;
 
-import Database.DatabaseManager;
+import Interfaces.PatientDAO;
+import Interfaces.DoctorDAO;
+import Interfaces.AppointmentDAO;
 import Entities.Appointment;
 import Entities.Doctor;
 import Entities.Patient;
@@ -15,18 +17,15 @@ public class HospitalService {
     private final List<Patient> patients = new ArrayList<>();
     private final List<Doctor> doctors = new ArrayList<>();
     private final List<Appointment> appointments = new ArrayList<>();
-    private final DatabaseManager dbManager;
+    private final PatientDAO patientDAO;
+    private final DoctorDAO doctorDAO;
+    private final AppointmentDAO appointmentDAO;
 
-    public HospitalService() {
-        DatabaseManager tempDbManager = null;
-        try {
-            tempDbManager = new DatabaseManager();
-        } catch (SQLException e) {
-            Logger.logError("Failed to initialize Database.DatabaseManager: " + e.getMessage());
-            System.out.println("Critical error initializing database connection. Exiting.");
-            System.exit(1);
-        }
-        dbManager = tempDbManager;
+    // Constructor that accepts interfaces for DB access
+    public HospitalService(PatientDAO patientDAO, DoctorDAO doctorDAO, AppointmentDAO appointmentDAO) {
+        this.patientDAO = patientDAO;
+        this.doctorDAO = doctorDAO;
+        this.appointmentDAO = appointmentDAO;
     }
 
     /**
@@ -89,14 +88,14 @@ public class HospitalService {
         String name = scanner.nextLine();
         System.out.print("Enter Patient's Age: ");
         int age = Integer.parseInt(scanner.nextLine());
-        System.out.print("Enter Ailment's: ");
+        System.out.print("Enter Ailment: ");
         String ailment = scanner.nextLine();
 
         Patient patient = new Patient(name, age, ailment);
         patients.add(patient);
 
         try {
-            dbManager.savePatient(patient);
+            patientDAO.savePatient(patient); // Using the PatientDAO interface
             System.out.println("Patient added successfully!");
         } catch (Exception e) {
             Logger.logError(e.getMessage());
@@ -113,7 +112,7 @@ public class HospitalService {
         doctors.add(doctor);
 
         try {
-            dbManager.saveDoctor(doctor);
+            doctorDAO.saveDoctor(doctor); // Using the DoctorDAO interface
             System.out.println("Doctor added successfully!");
         } catch (Exception e) {
             Logger.logError(e.getMessage());
@@ -132,7 +131,7 @@ public class HospitalService {
         appointments.add(appointment);
 
         try {
-            dbManager.saveAppointment(appointment);
+            appointmentDAO.saveAppointment(appointment); // Using the AppointmentDAO interface
             System.out.println("Appointment scheduled successfully!");
         } catch (Exception e) {
             Logger.logError(e.getMessage());
